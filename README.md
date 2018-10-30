@@ -1,19 +1,18 @@
-# 作り途中です
+# Dockerを使ってMySQLを勉強しましょう。
 
-まず`example.env`を`.env`にリネームしてください。
-
-`docker-compose.yml`の置いてあるディレクトリをカレントディレクトリにした状態で
-
-以下のコマンドを実施。
+`docker-compose.yml`の置いてあるディレクトリをカレントディレクトリにした状態で以下のコマンドを実施。
 
 ```
-docker-compose up -d mysql
-docker-compose up -d nginx
+# 初めて触る場合はこっちを使ってイメージを作成します。
+docker-compose up --build -d
+
+# 二回目はイメージが作成済みなのでこっちのコマンド
+docker-compose up -d
 ```
 
 mysqlコンテナが立ち上がり、起動時の設定が終わるまで待ちます。
 
-`docker-compose logs mysql`コマンドを使い、下記のようなログが出てきたら立ち上がりが完了です。
+立ち上げ直後はmysql-clientで侵入できません。
 
 ```
 mysql_ctr | Version: '5.7.22'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
@@ -22,22 +21,49 @@ mysql_ctr | Version: '5.7.22'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306
 そうしましたら、下記のコマンドを打ってください。
 
 ```
-docker-compose up -d flask
+docker-compose exec mysql mysql -p
 ```
 
-`127.0.0.1`でウェブブラウザを開いてください。
+そうするとMySQLに侵入できます。
 
-DockerMachineやDocker-Toolboxを使っている場合は、その起動したDockerMachineのIPアドレス
-(たぶん`192.168.99.100`)で開いてみてください。
+```
+Enter password:
+```
 
-`Nginx`で80番ポートを開けているので見られるはずです。
+と聞かれるので`root`と打ってください。
 
+以下のようなメッセージが出たら完了です。
 
-## 参考リンク
-https://github.com/planset/study_flask/blob/master/docs/05.rst
+```
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.22 MySQL Community Server (GPL)
 
-https://flask-migrate.readthedocs.io/en/latest/
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
 
-https://qiita.com/wasanx25/items/d47caf37b79e855af95f
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
 
-https://qiita.com/yasunori/items/64606e63b36b396cf695
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+```
+
+MySQLから抜ける場合は`exit`と打ってください。
+
+# 作業や勉強を切り上げるとき、やめるとき
+
+`docker-compose.yml`の置いてあるディレクトリをカレントディレクトリにした状態で以下のコマンドを実施。
+
+```
+docker-compose down
+```
+
+以下のような文言が出ればコンテナは閉じられました。
+
+```
+Stopping mysql_ctr ... done
+Removing mysql_ctr ... done
+Removing network sql_default
+```
