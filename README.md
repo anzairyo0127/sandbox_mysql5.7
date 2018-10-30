@@ -10,15 +10,17 @@ docker-compose up --build -d
 docker-compose up -d
 ```
 
-mysqlコンテナが立ち上がり、起動時の設定が終わるまで待ちます。
+mysqlコンテナが立ち上がり、起動時の準備が終わるまで待ちます。最低でも5秒は待ってください。
 
-立ち上げ直後はmysql-clientで侵入できません。
+`docker-compose logs`を打つと色んなログが出てきますが
 
 ```
-mysql_ctr | Version: '5.7.22'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+Version: '5.7.22'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)
 ```
 
-そうしましたら、下記のコマンドを打ってください。
+と出ていれば、MySQLの準備が完了しているようです。
+
+MySQLの準備が終わったら下記のコマンドを打ってください。
 
 ```
 docker-compose exec mysql mysql -p
