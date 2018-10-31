@@ -4,6 +4,8 @@ services:
         build: ./db
         image: myblog_mysql
         container_name: mysql_ctr
+        volumes:
+            - ./share:/var/share/
         environment:
             MYSQL_ROOT_PASSWORD: root
             TZ: "Asia/Tokyo" 
