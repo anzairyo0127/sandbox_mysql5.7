@@ -115,4 +115,38 @@ Regexp.new('\d{3}-\d{4}')
 =end
 
 
+pattern = '\d{3}-\d{4}'
+p('123-4567' =~ /#{pattern}/)
 
+text = '03-1234-5678'
+case text
+when /^\d{3}-\d{4}$/
+    puts('郵便番号です')
+when /^\d{4}\/\d{1, 2}\/\d{1,2}$/
+    puts('日付です')
+when /^\d+-\d+-\d+$/
+    puts('電話番号です')
+end
+
+
+p('HELLO' =~ /hello/i)
+p('HELLO' =~ %r{hello}i)
+
+text = '私の誕生日は1977年7月17日です。'
+
+text =~ /(\d+)年(\d+)月(\d+)日/
+
+p($~)
+p($1)
+p($2)
+p($3)
+p(Regexp.last_match)
+p(Regexp.last_match(1))
+p(Regexp.last_match(2))
+p(Regexp.last_match(3))
+p(Regexp.last_match(-1))
+
+
+p(/\d{3}-\d{4}/.match?('123-4567'))
+p(Regexp.last_match)
+p($~)
