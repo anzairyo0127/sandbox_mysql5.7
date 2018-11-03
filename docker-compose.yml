@@ -2,7 +2,7 @@ version: "3"
 services:
     mysql:
         build: ./db
-        image: myblog_mysql
+        image: sandbox_mysql
         container_name: mysql_ctr
         volumes:
             - ./share:/var/share/
