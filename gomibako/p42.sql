@@ -9,8 +9,23 @@ CREATE TABLE doughnut_list
 );
 
 
+CREATE TABLE `my_contacts` (
+  
+  `last_name` varchar(30) NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `gender` varchar(1) NOT NULL,
+  `birthday` date NOT NULL,
+  `profession` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `interests` varchar(100) NOT NULL,
+  `seeking` varchar(100) NOT NULL
+);
+
 CREATE TABLE my_contacts
 ( 
+    contact_id INT NOT NULL AUTO_INCREMENT,
     last_name VARCHAR(30) NOT NULL,
     first_name VARCHAR(20) NOT NULL,
     email VARCHAR(50) NOT NULL,
@@ -20,7 +35,8 @@ CREATE TABLE my_contacts
     location VARCHAR(50) NOT NULL,
     status VARCHAR(20) NOT NULL,
     interests VARCHAR(100) NOT NULL,
-    seeking VARCHAR(100) NOT NULL
+    seeking VARCHAR(100) NOT NULL,
+    PRIMARY KEY (contact_id)
 );
 
 INSERT INTO my_contacts
@@ -158,7 +174,55 @@ UPDATE doughnut_list SET doughnut_name = 'レシートリザード' WHERE doughn
 
 UPDATE doughnut_list SET doughnut_cost = doughnut_cost + 1 WHERE doughnut_name = 'アンデルセン';
 
+CREATE TABLE my_contactx
+( 
+    contact_id INT NOT NULL AUTO_INCREMENT,
+    location VARCHAR(50) NOT NULL,
+    city VARCHAR(50),
+    state VARCHAR(50),
+    PRIMARY KEY (contact_id)
+);
+
+
+
+
+
+
+
 P.160
 SELECT * FROM fish_info WHERE location LIKE 'ニュージャージー州%';
 SELECT * FROM fish_records WHERE share = 'ニュージャージー州';
 
+P.189
+CREATE TABLE entries
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    last_name VARCHAR(20) NOT NULL,
+    first_name VARCHAR(20) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+INSERT INTO entries(id, first_name, last_name)
+VALUES (NULL, 'マルシア', 'ブレイディ');
+
+INSERT INTO entries(id, first_name, last_name)
+VALUES (1, 'ジャン', 'ブレイディ');
+
+INSERT INTO entries(id, first_name, last_name)
+VALUES (2, 'ボビー', 'ブレイディ');
+
+INSERT INTO entries(first_name, last_name)
+VALUES ('シンディ', 'ブレイディ');
+
+INSERT INTO entries(id, first_name, last_name)
+VALUES (99, 'ピーター', 'ブレイディ');
+
+ALTER TABLE entries 
+ADD COLUMN arm VARCHAR(20) NOT NULL;
+
+ALTER TABLE entries
+ADD COLUMN id INT NOT NULL AUTO_INCREMENT,
+ADD PRIMARY KEY (id);
+
+
+ALTER TABLE my_contacts ADD CULUMN phon_number CHAR(10) NOT NULL AFTER first_name;
