@@ -7,27 +7,17 @@ import unittest
 
 
 class Taiyaki:
-    '''
-    たい焼きの型でござるな
-    '''
-
     def __init__(self, anko):
         self.anko = anko
 
 
 class TaiyakiTest(unittest.TestCase):
-    '''
-    単体テストの呼び出しでござるな。
-    '''
 
     def test_taiyaki(self):
-        '''
-        単体テスト本体でござるな。
-        '''
         taiyaki_1 = Taiyaki('あんこ')
-        print(taiyaki_1)
+        self.assertEqual('あんこ', taiyaki_1.anko)
         taiyaki_2 = Taiyaki('白あん')
-        print(taiyaki_2)
+        self.assertEqual('白あん', taiyaki_2.anko)
 
 
 if __name__ == '__main__':
