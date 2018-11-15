@@ -7,7 +7,7 @@ CREATE TABLE test(
 );
 
 INSERT INTO test (test_char)
-VALUE
+VALUES
 ('0'),('1'),('2'),('3'),
 ('A'),('B'),('C'),('D'),
 ('a'),('b'),('c'),('d'),
