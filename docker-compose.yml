@@ -11,3 +11,12 @@ services:
             TZ: "Asia/Tokyo" 
         ports:
             - 3306:3306
+    ruby:
+        image: ruby:2.5.3
+        container_name: ruby_ctr
+        volumes:
+            - ./gomibako:/gomibako
+        environment:
+            TZ: "Asia/Tokyo"
+        tty: true
+        stdin_open: true
