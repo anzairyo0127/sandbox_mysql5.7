@@ -1,0 +1,8 @@
+# hello_worldという名前のタスクを定義する
+namespace :my_tasks do
+    desc 'テスト用のタスクです'
+    task :hello_world do
+        # ブロックの中がタスクとして実行される処理になる
+        puts 'Hello, World!'
+    end
+end
