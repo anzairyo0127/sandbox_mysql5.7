@@ -1,0 +1,2 @@
+p ENV['MY_NAME']
+p ARGV[0]
